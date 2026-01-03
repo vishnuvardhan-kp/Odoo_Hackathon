@@ -42,3 +42,4 @@ Write-Host "2. Create the database: CREATE DATABASE globe_trotter;" -ForegroundC
 Write-Host "3. Run the schema: mysql -u root -p globe_trotter < schema.sql" -ForegroundColor White
 Write-Host "4. Restart the backend server" -ForegroundColor White
 
+

@@ -111,3 +111,4 @@ npm start
 - The JWT_SECRET should be changed in production
 - Both servers auto-reload on code changes (if using `npm run dev`)
 
+

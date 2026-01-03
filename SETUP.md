@@ -80,3 +80,4 @@ npm start
 4. Open http://localhost:3000 in your browser
 5. Sign up for a new account and start planning trips!
 
+

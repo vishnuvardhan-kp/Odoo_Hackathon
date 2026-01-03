@@ -19,3 +19,4 @@ Trip.hasMany(Expense, { foreignKey: 'trip_id' });
 
 export { User, Trip, Destination, Activity, Expense };
 
+
