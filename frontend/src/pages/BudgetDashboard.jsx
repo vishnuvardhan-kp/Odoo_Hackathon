@@ -62,12 +62,15 @@ const BudgetDashboard = () => {
   if (loading || !budget) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="text-white text-xl">Loading...</div>
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
+          <p className="text-gray-600 text-xl">Loading budget data...</p>
+        </div>
       </div>
     );
   }
 
-  const COLORS = ['#8B5CF6', '#EC4899', '#10B981', '#F59E0B', '#EF4444', '#3B82F6'];
+  const COLORS = ['#0ea5e9', '#06b6d4', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'];
 
   const pieData = Object.entries(budget.breakdown || {}).map(([name, value]) => ({
     name,
@@ -81,16 +84,16 @@ const BudgetDashboard = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-white mb-2">Budget Dashboard</h1>
-          <Link to={`/trips/${id}`} className="text-purple-400 hover:text-purple-300">
+          <h1 className="text-4xl font-bold text-gray-800 mb-2">Budget Dashboard</h1>
+          <Link to={`/trips/${id}`} className="text-blue-600 hover:text-blue-700 font-medium">
             ← Back to Trip
           </Link>
         </div>
         <button
           onClick={() => setShowAddExpense(true)}
-          className="bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-3 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all"
+          className="bg-gradient-to-r from-blue-600 to-cyan-600 px-6 py-3 rounded-xl font-semibold text-white hover:from-blue-700 hover:to-cyan-700 transition-all shadow-lg hover:shadow-xl"
         >
           + Add Expense
         </button>
@@ -98,31 +101,31 @@ const BudgetDashboard = () => {
 
       {/* Budget Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="glass rounded-2xl p-6">
-          <p className="text-gray-400 text-sm mb-2">Budget Limit</p>
-          <p className="text-3xl font-bold text-white">
+        <div className="glass rounded-2xl p-6 bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-100">
+          <p className="text-gray-600 text-sm mb-2 font-medium">Budget Limit</p>
+          <p className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
             ${parseFloat(budget.budget_limit || 0).toLocaleString()}
           </p>
         </div>
-        <div className="glass rounded-2xl p-6">
-          <p className="text-gray-400 text-sm mb-2">Total Spent</p>
-          <p className="text-3xl font-bold text-white">
+        <div className="glass rounded-2xl p-6 bg-gradient-to-br from-cyan-50 to-teal-50 border-2 border-cyan-100">
+          <p className="text-gray-600 text-sm mb-2 font-medium">Total Spent</p>
+          <p className="text-3xl font-bold bg-gradient-to-r from-cyan-600 to-teal-600 bg-clip-text text-transparent">
             ${parseFloat(budget.total_cost || 0).toLocaleString()}
           </p>
         </div>
-        <div className="glass rounded-2xl p-6">
-          <p className="text-gray-400 text-sm mb-2">Remaining</p>
+        <div className="glass rounded-2xl p-6 bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-100">
+          <p className="text-gray-600 text-sm mb-2 font-medium">Remaining</p>
           <p
             className={`text-3xl font-bold ${
-              budget.remaining >= 0 ? 'text-green-400' : 'text-red-400'
+              budget.remaining >= 0 ? 'text-green-600' : 'text-red-600'
             }`}
           >
             ${parseFloat(budget.remaining || 0).toLocaleString()}
           </p>
         </div>
-        <div className="glass rounded-2xl p-6">
-          <p className="text-gray-400 text-sm mb-2">Percentage Used</p>
-          <p className="text-3xl font-bold text-white">
+        <div className="glass rounded-2xl p-6 bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-100">
+          <p className="text-gray-600 text-sm mb-2 font-medium">Percentage Used</p>
+          <p className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
             {parseFloat(budget.percentage_used || 0).toFixed(1)}%
           </p>
         </div>
@@ -131,7 +134,7 @@ const BudgetDashboard = () => {
       {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="glass rounded-2xl p-6">
-          <h2 className="text-2xl font-bold text-white mb-4">Expense Breakdown</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">Expense Breakdown</h2>
           {pieData.length > 0 ? (
             <ResponsiveContainer width="100%" height={300}>
               <PieChart>
@@ -158,7 +161,7 @@ const BudgetDashboard = () => {
         </div>
 
         <div className="glass rounded-2xl p-6">
-          <h2 className="text-2xl font-bold text-white mb-4">Expenses by Category</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">Expenses by Category</h2>
           {barData.length > 0 ? (
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={barData}>
@@ -180,31 +183,38 @@ const BudgetDashboard = () => {
 
       {/* Expenses List */}
       <div className="glass rounded-2xl p-6">
-        <h2 className="text-2xl font-bold text-white mb-4">Recent Expenses</h2>
+        <h2 className="text-2xl font-bold text-gray-800 mb-4">Recent Expenses</h2>
         {expenses.length > 0 ? (
           <div className="space-y-3">
             {expenses.map((expense) => (
               <div
                 key={expense.id}
-                className="glass-dark rounded-lg p-4 flex items-center justify-between"
+                className="bg-white border border-gray-200 rounded-xl p-4 flex items-center justify-between hover:shadow-md transition-all"
               >
                 <div>
-                  <p className="text-white font-medium">{expense.category}</p>
+                  <p className="text-gray-800 font-semibold">{expense.category}</p>
                   {expense.description && (
-                    <p className="text-gray-400 text-sm">{expense.description}</p>
+                    <p className="text-gray-600 text-sm mt-1">{expense.description}</p>
                   )}
-                  <p className="text-gray-500 text-xs">
+                  <p className="text-gray-500 text-xs mt-1">
                     {new Date(expense.date).toLocaleDateString()}
                   </p>
                 </div>
-                <p className="text-xl font-bold text-white">
+                <p className="text-xl font-bold text-blue-600">
                   ${parseFloat(expense.amount).toLocaleString()}
                 </p>
               </div>
             ))}
           </div>
         ) : (
-          <div className="text-center py-8 text-gray-300">No expenses recorded yet</div>
+          <div className="text-center py-12">
+          <img 
+            src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=200&q=80" 
+            alt="No expenses" 
+            className="w-24 h-24 mx-auto mb-4 rounded-full object-cover opacity-50"
+          />
+          <p className="text-gray-600">No expenses recorded yet</p>
+        </div>
         )}
       </div>
 

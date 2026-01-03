@@ -8,9 +8,9 @@ const Layout = ({ children }) => {
   const location = useLocation();
 
   const navItems = [
-    { path: '/', label: 'Dashboard', icon: '🏠' },
-    { path: '/trips/new', label: 'New Trip', icon: '➕' },
-    { path: '/search', label: 'Search Cities', icon: '🔍' },
+    { path: '/', label: 'Dashboard' },
+    { path: '/trips/new', label: 'New Trip' },
+    { path: '/search', label: 'Search Cities' },
   ];
 
   return (
@@ -23,14 +23,15 @@ const Layout = ({ children }) => {
       >
         <div className="flex flex-col h-full p-6">
           <div className="flex items-center justify-between mb-8">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              🌍 Globe Trotter
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+              Globe Trotter
             </h1>
             <button
               onClick={() => setSidebarOpen(false)}
-              className="lg:hidden text-white hover:text-gray-300"
+              className="lg:hidden text-gray-700 hover:text-gray-900 text-xl font-semibold"
+              aria-label="Close menu"
             >
-              ✕
+              ×
             </button>
           </div>
 
@@ -40,14 +41,13 @@ const Layout = ({ children }) => {
                 key={item.path}
                 to={item.path}
                 onClick={() => setSidebarOpen(false)}
-                className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all ${
+                className={`px-4 py-3 rounded-lg transition-all font-medium ${
                   location.pathname === item.path
-                    ? 'bg-white bg-opacity-20 text-white'
-                    : 'text-gray-300 hover:bg-white hover:bg-opacity-10'
+                    ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white'
+                    : 'text-gray-700 hover:bg-gray-100'
                 }`}
               >
-                <span className="text-xl">{item.icon}</span>
-                <span>{item.label}</span>
+                {item.label}
               </Link>
             ))}
           </nav>
@@ -58,10 +58,9 @@ const Layout = ({ children }) => {
             </div>
             <button
               onClick={logout}
-              className="w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-300 hover:bg-white hover:bg-opacity-10 transition-all"
+              className="w-full px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 transition-all font-medium text-left"
             >
-              <span>🚪</span>
-              <span>Logout</span>
+              Logout
             </button>
           </div>
         </div>
@@ -81,11 +80,12 @@ const Layout = ({ children }) => {
         <header className="lg:hidden glass-dark p-4 flex items-center justify-between">
           <button
             onClick={() => setSidebarOpen(true)}
-            className="text-white text-2xl"
+            className="text-gray-700 text-2xl font-bold"
+            aria-label="Open menu"
           >
             ☰
           </button>
-          <h1 className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
             Globe Trotter
           </h1>
           <div className="w-8" />

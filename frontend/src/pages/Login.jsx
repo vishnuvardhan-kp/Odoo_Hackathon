@@ -26,12 +26,25 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="glass rounded-2xl p-8 w-full max-w-md shadow-2xl">
-        <h1 className="text-3xl font-bold text-center mb-2 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-          🌍 Globe Trotter
-        </h1>
-        <p className="text-center text-gray-300 mb-8">Welcome back!</p>
+    <div className="min-h-screen flex items-center justify-center p-4" style={{
+      backgroundImage: 'url(https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1920&q=80)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    }}>
+      <div className="glass rounded-2xl p-8 w-full max-w-md shadow-2xl backdrop-blur-lg bg-white/95">
+        <div className="text-center mb-8">
+          <div className="mb-4">
+            <img 
+              src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=200&q=80" 
+              alt="Travel" 
+              className="w-20 h-20 mx-auto rounded-full object-cover shadow-lg"
+            />
+          </div>
+          <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+            Globe Trotter
+          </h1>
+          <p className="text-gray-600 mt-2">Welcome back! Continue your journey</p>
+        </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {error && (
@@ -41,7 +54,7 @@ const Login = () => {
           )}
 
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
               Email
             </label>
             <input
@@ -49,13 +62,13 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-3 rounded-lg glass-dark border border-white border-opacity-20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               placeholder="your@email.com"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
               Password
             </label>
             <input
@@ -63,7 +76,7 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full px-4 py-3 rounded-lg glass-dark border border-white border-opacity-20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               placeholder="••••••••"
             />
           </div>
@@ -71,15 +84,15 @@ const Login = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-3 rounded-xl font-semibold hover:from-blue-700 hover:to-cyan-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
           >
             {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
 
-        <p className="text-center text-gray-300 mt-6">
+        <p className="text-center text-gray-600 mt-6">
           Don't have an account?{' '}
-          <Link to="/signup" className="text-purple-400 hover:text-purple-300">
+          <Link to="/signup" className="text-blue-600 hover:text-blue-700 font-medium">
             Sign up
           </Link>
         </p>

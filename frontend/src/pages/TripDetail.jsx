@@ -53,19 +53,19 @@ const TripDetail = () => {
             to={`/trips/${id}/itinerary`}
             className="glass px-6 py-3 rounded-lg font-semibold hover:bg-white hover:bg-opacity-20 transition-all"
           >
-            📅 Itinerary
+            Itinerary
           </Link>
           <Link
             to={`/trips/${id}/timeline`}
             className="glass px-6 py-3 rounded-lg font-semibold hover:bg-white hover:bg-opacity-20 transition-all"
           >
-            📊 Timeline
+            Timeline
           </Link>
           <Link
             to={`/trips/${id}/budget`}
             className="glass px-6 py-3 rounded-lg font-semibold hover:bg-white hover:bg-opacity-20 transition-all"
           >
-            💰 Budget
+            Budget
           </Link>
         </div>
       </div>
